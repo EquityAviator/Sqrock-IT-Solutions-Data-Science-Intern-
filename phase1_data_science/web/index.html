@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Data Science Internship — Phase 1 | Sqrock IT Solutions</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232563eb'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='15' font-weight='bold' fill='white' text-anchor='middle'%3ESQ%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">SQ</div>
+      <div>
+        <h1>Data Science Internship</h1>
+        <span>Phase 1 &middot; Sqrock IT Solutions</span>
+      </div>
+    </div>
+    <nav class="nav" id="nav">
+      <div class="nav-label">Phase 1</div>
+      <a data-page="overview" class="active"><span class="dot"></span>Overview &amp; Requirements</a>
+      <div class="nav-label">Projects</div>
+      <a data-page="task1"><span class="dot"></span>Task 1 · Sales Forecasting<span class="badge-n">T1</span></a>
+      <a data-page="task2"><span class="dot"></span>Task 2 · Student Performance<span class="badge-n">T2</span></a>
+      <a data-page="task3"><span class="dot"></span>Task 3 · Resume Screening<span class="badge-n">T3</span></a>
+      <a data-page="task4"><span class="dot"></span>Task 4 · Customer Churn<span class="badge-n">T4</span></a>
+      <div class="nav-label">Delivery</div>
+      <a data-page="submission"><span class="dot"></span>Submission Package</a>
+    </nav>
+    <div class="note" style="padding:16px 10px 0; line-height:1.5;">
+      Built with Python, Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn &amp; NLTK.
+    </div>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <main class="main">
+
+    <!-- ========== OVERVIEW ========== -->
+    <section class="page active" id="page-overview">
+      <h2 class="title">Phase 1 — Requirements Analysis</h2>
+      <p class="sub">First 15 days · 4 project tasks · complete any 3 · deliverables, datasets and results below.</p>
+
+      <div class="grid g4" style="margin-bottom:22px;">
+        <div class="stat"><div class="k">Phase window</div><div class="v blue">15 days</div><div class="d">First 15 days of internship</div></div>
+        <div class="stat"><div class="k">Tasks offered</div><div class="v">4</div><div class="d">Any 3 required to pass</div></div>
+        <div class="stat"><div class="k">Completed here</div><div class="v green">4 / 4</div><div class="d">All projects delivered</div></div>
+        <div class="stat"><div class="k">Datasets sourced</div><div class="v purple">4</div><div class="d">Hugging Face · UCI · IBM</div></div>
+      </div>
+
+      <div class="callout">
+        <b>Phase 1 objective (from the brief):</b> improve practical development skills, project-building
+        experience, problem-solving ability and portfolio quality through real-world data science projects.
+        Each task must follow a full pipeline — data collection → cleaning → EDA → feature engineering →
+        modelling → prediction → evaluation — and end with a deployable project plus a LinkedIn post.
+      </div>
+
+      <h3 class="sec">Task catalogue &amp; status</h3>
+      <div class="grid g2" id="taskCards"></div>
+
+      <h3 class="sec">How each project maps to the required pipeline</h3>
+      <div class="card">
+        <table class="tbl">
+          <thead><tr><th>Pipeline stage</th><th>Task 1</th><th>Task 2</th><th>Task 3</th><th>Task 4</th></tr></thead>
+          <tbody id="pipelineMap"></tbody>
+        </table>
+      </div>
+
+      <h3 class="sec">Datasets used — source &amp; rationale</h3>
+      <div class="card">
+        <table class="tbl">
+          <thead><tr><th>Task</th><th>Dataset</th><th>Source</th><th>Size</th><th>Why this dataset</th></tr></thead>
+          <tbody id="datasetTable"></tbody>
+        </table>
+      </div>
+
+      <h3 class="sec">Evaluation criteria (as specified in the brief)</h3>
+      <div class="grid g3">
+        <div class="card"><h4>Regression tasks</h4>
+          <ul class="clean"><li><b>Task 1</b> — MAE, RMSE</li><li><b>Task 2</b> — MAE, MSE, R²</li></ul></div>
+        <div class="card"><h4>NLP task</h4>
+          <ul class="clean"><li><b>Task 3</b> — match score (%), ranking quality, shortlist</li></ul></div>
+        <div class="card"><h4>Classification task</h4>
+          <ul class="clean"><li><b>Task 4</b> — Accuracy, Precision, Recall, F1, Confusion Matrix</li></ul></div>
+      </div>
+
+      <div class="footer">Sqrock IT Solutions · Data Science Internship · Phase 1 (First 15 Days)</div>
+    </section>
+
+    <!-- ========== TASK 1 ========== -->
+    <section class="page" id="page-task1">
+      <span class="pill">Task 1 · Machine Learning · Time Series</span>
+      <h2 class="title" style="margin-top:10px;">Sales Forecasting System</h2>
+      <p class="sub">Analyse historical sales and predict future sales with machine learning.</p>
+
+      <div class="callout"><b>Problem statement.</b> Businesses need to understand future sales trends to manage
+        inventory, revenue and planning. This system forecasts future sales from historical data.</div>
+
+      <h3 class="sec">Dataset</h3>
+      <div class="card">
+        <div class="grid g2">
+          <div>
+            <h4>Store Sales — Favorita grocery chain</h4>
+            <div class="kv"><span>Source</span><b>Hugging Face (Kaggle mirror)</b></div>
+            <div class="kv"><span>Raw records</span><b id="t1-raw">—</b></div>
+            <div class="kv"><span>Daily series</span><b id="t1-daily">—</b></div>
+            <div class="kv"><span>Date range</span><b id="t1-range">—</b></div>
+            <div class="kv"><span>Columns</span><b>date · store_nbr · family · sales · onpromotion</b></div>
+          </div>
+          <div>
+            <h4>Why this dataset</h4>
+            <p class="note" style="font-size:13px; color:var(--ink-2);">
+              It is a <b>real</b> multi-store retail transaction log with 3M rows across 4.5 years — genuine
+              trend, weekly and yearly seasonality rather than a synthetic toy series. The brief asks for
+              <code>Date</code>, <code>Sales</code> and optional <code>Product</code>/<code>Category</code>/<code>Region</code>;
+              <code>family</code> maps to category and <code>store_nbr</code> to region/store, so every required
+              column is covered. Large enough to make MAE/RMSE meaningful.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sec">Pipeline steps performed</h3>
+      <div class="card"><div class="steps" id="t1-steps"></div></div>
+
+      <h3 class="sec">Exploratory data analysis</h3>
+      <div class="card" style="margin-bottom:16px;">
+        <h4>Sales trend over time</h4>
+        <div class="chart-box h320"><canvas id="c1-trend"></canvas></div>
+      </div>
+      <div class="grid g2" style="margin-bottom:16px;">
+        <div class="card"><h4>Monthly totals (red = best, green = worst)</h4><div class="chart-box h280"><canvas id="c1-monthly"></canvas></div></div>
+        <div class="card"><h4>Seasonality by calendar month</h4><div class="chart-box h280"><canvas id="c1-season"></canvas></div></div>
+      </div>
+      <div class="card"><h4>Average sales by day of week</h4><div class="chart-box h240"><canvas id="c1-dow"></canvas></div></div>
+
+      <h3 class="sec">Model performance</h3>
+      <div class="grid g2" style="margin-bottom:16px;">
+        <div class="card">
+          <h4>Evaluation metrics (hold-out: last 90 days)</h4>
+          <table class="tbl"><thead><tr><th>Model</th><th class="num">MAE</th><th class="num">RMSE</th></tr></thead>
+            <tbody id="t1-models"></tbody></table>
+          <div class="note" style="margin-top:10px;">Lower is better. Best model highlighted.</div>
+        </div>
+        <div class="card"><h4>MAE / RMSE comparison</h4><div class="chart-box h280"><canvas id="c1-metrics"></canvas></div></div>
+      </div>
+
+      <h3 class="sec">Prediction</h3>
+      <div class="card" style="margin-bottom:16px;">
+        <h4>Actual vs predicted — last 90 days</h4>
+        <div class="chart-box h320"><canvas id="c1-avp"></canvas></div>
+      </div>
+      <div class="card">
+        <h4>Forward forecast — next 30 days</h4>
+        <div class="chart-box h320"><canvas id="c1-forecast"></canvas></div>
+        <div class="grid g3" style="margin-top:16px;">
+          <div class="stat"><div class="k">Forecast total (30d)</div><div class="v green" id="t1-fctotal">—</div></div>
+          <div class="stat"><div class="k">Forecast daily average</div><div class="v blue" id="t1-fcmean">—</div></div>
+          <div class="stat"><div class="k">Best model</div><div class="v purple" id="t1-best" style="font-size:20px;">—</div></div>
+        </div>
+      </div>
+
+      <div class="footer">Artifacts: <code>forecast_30d.csv</code>, <code>actual_vs_predicted.csv</code>, <code>monthly_totals.csv</code>, <code>metrics.json</code></div>
+    </section>
+
+    <!-- ========== TASK 2 ========== -->
+    <section class="page" id="page-task2">
+      <span class="pill green">Task 2 · Machine Learning · Regression</span>
+      <h2 class="title" style="margin-top:10px;">Student Performance Predictor</h2>
+      <p class="sub">Predict a student's final marks from academic and personal factors.</p>
+
+      <div class="callout"><b>Problem statement.</b> Educational institutions want to identify students who may
+        need extra support. This system predicts student performance (marks) using historical data.</div>
+
+      <h3 class="sec">Dataset</h3>
+      <div class="card">
+        <div class="grid g2">
+          <div>
+            <h4>UCI Student Performance (Cortez &amp; Silva)</h4>
+            <div class="kv"><span>Source</span><b>UCI ML Repository</b></div>
+            <div class="kv"><span>Students</span><b id="t2-students">—</b></div>
+            <div class="kv"><span>Subjects</span><b>Mathematics + Portuguese</b></div>
+            <div class="kv"><span>Target</span><b>final_marks (G3, 0–20)</b></div>
+            <div class="kv"><span>Mean final marks</span><b id="t2-mean">—</b></div>
+          </div>
+          <div>
+            <h4>Column mapping to the brief's schema</h4>
+            <table class="tbl" style="margin-top:6px;">
+              <thead><tr><th>Required column</th><th>Real variable</th></tr></thead>
+              <tbody>
+                <tr><td>Study Hours</td><td><code>studytime</code> → hours/week</td></tr>
+                <tr><td>Attendance</td><td><code>absences</code> → attendance %</td></tr>
+                <tr><td>Previous Score</td><td><code>G2</code></td></tr>
+                <tr><td>Assignments Score</td><td><code>G1</code></td></tr>
+                <tr><td>Final Marks (target)</td><td><code>G3</code></td></tr>
+                <tr><td>Gender / parent education</td><td><code>sex</code>, <code>Medu</code>, <code>Fedu</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="note" style="margin-top:12px;"><b>Why this dataset:</b> it is the canonical real-world student
+          performance dataset (published, peer-reviewed), containing genuine study-time, absence, grade and
+          family-education variables — every factor the brief lists. Using real data gives an honest R² rather
+          than an artificially perfect synthetic result.</div>
+      </div>
+
+      <h3 class="sec">Pipeline steps performed</h3>
+      <div class="card"><div class="steps" id="t2-steps"></div></div>
+
+      <h3 class="sec">Exploratory data analysis</h3>
+      <div class="grid g2" style="margin-bottom:16px;">
+        <div class="card"><h4>Correlation heatmap</h4><img class="fig" src="assets/t2_corr.png" alt="correlation heatmap"></div>
+        <div class="card"><h4>Study hours vs final marks</h4><div class="chart-box h320"><canvas id="c2-study"></canvas></div></div>
+      </div>
+      <div class="grid g2" style="margin-bottom:16px;">
+        <div class="card"><h4>Average final marks by attendance band</h4><div class="chart-box h280"><canvas id="c2-att"></canvas></div></div>
+        <div class="card"><h4>Distribution of final marks</h4><div class="chart-box h280"><canvas id="c2-dist"></canvas></div></div>
+      </div>
+      <div class="grid g2">
+        <div class="card"><h4>Correlation of each feature with final marks</h4><div class="chart-box h320"><canvas id="c2-featcorr"></canvas></div></div>
+        <div class="card"><h4>Random Forest — feature importance</h4><div class="chart-box h320"><canvas id="c2-imp"></canvas></div></div>
+      </div>
+
+      <h3 class="sec">Model performance</h3>
+      <div class="grid g2">
+        <div class="card">
+          <h4>Evaluation metrics</h4>
+          <table class="tbl"><thead><tr><th>Model</th><th class="num">MAE</th><th class="num">MSE</th><th class="num">R²</th></tr></thead>
+            <tbody id="t2-models"></tbody></table>
+          <div class="note" style="margin-top:10px;">R² closer to 1 and MAE closer to 0 is better.</div>
+        </div>
+        <div class="card"><h4>Actual vs predicted</h4><img class="fig" src="assets/t2_avp.png" alt="actual vs predicted"></div>
+      </div>
+
+      <h3 class="sec">Interactive predictor</h3>
+      <div class="card">
+        <p class="note" style="margin-top:0;">A compact linear model fitted on the four headline features lets you
+          explore how each factor moves the predicted final mark. Move the sliders to see the effect live.</p>
+        <div class="grid g2" style="margin-top:14px;">
+          <div>
+            <div class="ctrl"><label>Study hours / week <span class="val" id="v2-study">5</span></label>
+              <input type="range" id="s2-study" min="1" max="14" step="0.5" value="5"></div>
+            <div class="ctrl"><label>Attendance % <span class="val" id="v2-att">90</span></label>
+              <input type="range" id="s2-att" min="50" max="100" step="1" value="90"></div>
+            <div class="ctrl"><label>Previous score (0–20) <span class="val" id="v2-prev">12</span></label>
+              <input type="range" id="s2-prev" min="0" max="20" step="0.5" value="12"></div>
+            <div class="ctrl"><label>Assignments score (0–20) <span class="val" id="v2-asg">12</span></label>
+              <input type="range" id="s2-asg" min="0" max="20" step="0.5" value="12"></div>
+          </div>
+          <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; background:var(--panel-2); border:1px solid var(--line); border-radius:12px; padding:22px;">
+            <div class="result-lbl">Predicted final mark</div>
+            <div class="result-big" id="t2-pred" style="color:var(--primary); margin:8px 0;">—</div>
+            <div class="note" id="t2-band">—</div>
+            <div class="meter" style="width:100%;"><i id="t2-meter" style="background:var(--primary); width:0;"></i></div>
+            <div class="note" style="margin-top:8px;">Model R² (4 features) = <b id="t2-r2">—</b> · MAE = <b id="t2-mae">—</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">Artifacts: <code>predictions.csv</code>, <code>sample_students.csv</code>, <code>simple_model.json</code>, <code>metrics.json</code></div>
+    </section>
+
+    <!-- ========== TASK 3 ========== -->
+    <section class="page" id="page-task3">
+      <span class="pill amber">Task 3 · NLP · Information Retrieval</span>
+      <h2 class="title" style="margin-top:10px;">AI Resume Screening System</h2>
+      <p class="sub">Read resumes, compare them to a job description with NLP, and rank / shortlist candidates.</p>
+
+      <div class="callout"><b>Problem statement.</b> Companies receive hundreds of resumes for a single role and
+        manual screening is slow. This system reads resumes and ranks them by relevance to a job description.</div>
+
+      <h3 class="sec">Dataset &amp; job description</h3>
+      <div class="card">
+        <div class="grid g2">
+          <div>
+            <h4>Resume Screening Dataset</h4>
+            <div class="kv"><span>Source</span><b>Hugging Face · AzharAli05</b></div>
+            <div class="kv"><span>Total records</span><b>10,174 resumes · 45 roles</b></div>
+            <div class="kv"><span>Target role screened</span><b id="t3-role">—</b></div>
+            <div class="kv"><span>Resumes screened</span><b id="t3-count">—</b></div>
+            <div class="kv"><span>Fields</span><b>Role · Resume · Decision · Job Description</b></div>
+          </div>
+          <div>
+            <h4>Why this dataset</h4>
+            <p class="note" style="font-size:13px; color:var(--ink-2);">
+              It provides <b>full resume text with real candidate names</b> across 45 job roles, plus a matching
+              job description and a human select/reject decision — so the NLP pipeline works on realistic,
+              unstructured CV content and can be sanity-checked against a ground-truth label. A PDF→text
+              round-trip demo (3 resumes rendered to PDF and re-parsed with <code>pypdf</code>) covers the
+              brief's "convert PDFs into text" requirement.
+            </p>
+          </div>
+        </div>
+        <div class="callout" style="margin-top:14px;"><b>Job description used:</b><br><span id="t3-jd" class="note"></span></div>
+      </div>
+
+      <h3 class="sec">Pipeline steps performed</h3>
+      <div class="card"><div class="steps" id="t3-steps"></div></div>
+
+      <h3 class="sec">Ranking &amp; results</h3>
+      <div class="grid g2" style="margin-bottom:16px;">
+        <div class="card"><h4>Top 15 candidates (green = shortlisted)</h4><div class="chart-box h360"><canvas id="c3-top"></canvas></div></div>
+        <div class="card"><h4>Match-score distribution</h4><div class="chart-box h360"><canvas id="c3-dist"></canvas></div></div>
+      </div>
+      <div class="card" style="margin-bottom:16px;">
+        <h4>Skill coverage — top candidate: <span id="t3-topname" style="color:var(--primary);"></span></h4>
+        <div id="t3-skills" style="margin-top:10px;"></div>
+      </div>
+
+      <div class="grid g4" style="margin-bottom:16px;">
+        <div class="stat"><div class="k">Shortlisted</div><div class="v green" id="t3-short">—</div><div class="d">top N, score ≥ 30%</div></div>
+        <div class="stat"><div class="k">Mean score</div><div class="v blue" id="t3-meanscore">—</div><div class="d">across all resumes</div></div>
+        <div class="stat"><div class="k">Top match</div><div class="v purple" id="t3-topscore">—</div><div class="d">best candidate</div></div>
+        <div class="stat"><div class="k">TF-IDF matrix</div><div class="v amber" style="font-size:20px;" id="t3-matrix">—</div><div class="d">resumes × terms</div></div>
+      </div>
+
+      <div class="card">
+        <h4>Full ranking list</h4>
+        <div style="display:flex; gap:10px; margin:12px 0;">
+          <input type="text" id="t3-search" placeholder="Search candidate name…" style="max-width:280px;">
+          <select id="t3-filter" style="max-width:190px;">
+            <option value="all">All candidates</option>
+            <option value="yes">Shortlisted only</option>
+          </select>
+        </div>
+        <div class="scroll-y">
+          <table class="tbl">
+            <thead><tr><th class="num">Rank</th><th>Candidate</th><th class="num">Match %</th><th class="num">Skills</th><th>Status</th></tr></thead>
+            <tbody id="t3-table"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="footer">Artifacts: <code>ranking.csv</code>, <code>shortlist.csv</code>, <code>metrics.json</code></div>
+    </section>
+
+    <!-- ========== TASK 4 ========== -->
+    <section class="page" id="page-task4">
+      <span class="pill red">Task 4 · Machine Learning · Classification</span>
+      <h2 class="title" style="margin-top:10px;">Customer Churn Prediction System</h2>
+      <p class="sub">Predict whether a customer will leave (churn) or continue using the service.</p>
+
+      <div class="callout"><b>Problem statement.</b> Companies want to retain customers because losing customers
+        reduces revenue. This system analyses customer data and predicts churn risk.</div>
+
+      <h3 class="sec">Dataset</h3>
+      <div class="card">
+        <div class="grid g2">
+          <div>
+            <h4>IBM Telco Customer Churn</h4>
+            <div class="kv"><span>Source</span><b>IBM sample dataset</b></div>
+            <div class="kv"><span>Customers</span><b id="t4-cust">—</b></div>
+            <div class="kv"><span>Churn rate</span><b id="t4-rate">—</b></div>
+            <div class="kv"><span>Target</span><b>Churn (Yes/No)</b></div>
+            <div class="kv"><span>Features</span><b id="t4-feats">—</b></div>
+          </div>
+          <div>
+            <h4>Why this dataset</h4>
+            <p class="note" style="font-size:13px; color:var(--ink-2);">
+              It is the industry-standard churn benchmark (7,043 real telecom customers) containing every field the
+              brief requests — demographics, subscription plan, <code>tenure</code>, <code>MonthlyCharges</code>,
+              <code>TotalCharges</code>, service usage and a clean Yes/No <code>Churn</code> label. Its moderate
+              class imbalance (≈26% churn) makes Precision/Recall/F1 meaningful rather than trivial.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sec">Pipeline steps performed</h3>
+      <div class="card"><div class="steps" id="t4-steps"></div></div>
+
+      <h3 class="sec">Exploratory data analysis</h3>
+      <div class="grid g2" style="margin-bottom:16px;">
+        <div class="card"><h4>Churn distribution</h4><div class="chart-box h280"><canvas id="c4-dist"></canvas></div></div>
+        <div class="card"><h4>Churn rate by tenure</h4><div class="chart-box h280"><canvas id="c4-tenure"></canvas></div></div>
+      </div>
+      <div class="grid g2">
+        <div class="card"><h4>Monthly charges vs churn</h4><div class="chart-box h300"><canvas id="c4-charges"></canvas></div></div>
+        <div class="card"><h4>Correlation heatmap</h4><img class="fig" src="assets/t4_corr.png" alt="correlation heatmap"></div>
+      </div>
+
+      <h3 class="sec">Model performance</h3>
+      <div class="card" style="margin-bottom:16px;">
+        <h4>Metrics by model</h4>
+        <table class="tbl">
+          <thead><tr><th>Model</th><th class="num">Accuracy</th><th class="num">Precision</th><th class="num">Recall</th><th class="num">F1</th><th class="num">ROC-AUC</th></tr></thead>
+          <tbody id="t4-models"></tbody>
+        </table>
+      </div>
+      <div class="grid g3" style="margin-bottom:16px;">
+        <div class="card"><h4>Model comparison</h4><div class="chart-box h300"><canvas id="c4-compare"></canvas></div></div>
+        <div class="card"><h4>Confusion matrix (best model)</h4><div id="t4-confusion" style="padding:8px 0;"></div></div>
+        <div class="card"><h4>ROC curves</h4><div class="chart-box h300"><canvas id="c4-roc"></canvas></div></div>
+      </div>
+      <div class="card"><h4>Top churn drivers (Random Forest importance)</h4><div class="chart-box h320"><canvas id="c4-imp"></canvas></div></div>
+
+      <h3 class="sec">Interactive churn risk calculator</h3>
+      <div class="card">
+        <p class="note" style="margin-top:0;">Uses the exported logistic-regression coefficients (with the training
+          scaler) to score a hypothetical customer in real time.</p>
+        <div class="grid g2" style="margin-top:14px;">
+          <div>
+            <div class="ctrl"><label>Tenure (months) <span class="val" id="v4-tenure">12</span></label>
+              <input type="range" id="s4-tenure" min="0" max="72" step="1" value="12"></div>
+            <div class="ctrl"><label>Monthly charges ($) <span class="val" id="v4-monthly">70</span></label>
+              <input type="range" id="s4-monthly" min="18" max="120" step="1" value="70"></div>
+            <div class="ctrl"><label>Total charges ($) <span class="val" id="v4-total">840</span></label>
+              <input type="range" id="s4-total" min="0" max="8700" step="10" value="840" disabled></div>
+            <div class="note" style="margin:-8px 0 14px;">Total charges auto-computed as tenure × monthly charges.</div>
+            <div class="ctrl"><label>Contract type</label>
+              <select id="s4-contract"><option value="0">Month-to-month</option><option value="1">One year</option><option value="2">Two year</option></select></div>
+            <div class="ctrl"><label>Internet service</label>
+              <select id="s4-internet"><option value="0">DSL</option><option value="1">Fiber optic</option><option value="2">No internet</option></select></div>
+          </div>
+          <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; background:var(--panel-2); border:1px solid var(--line); border-radius:12px; padding:22px;">
+            <div class="result-lbl">Churn probability</div>
+            <div class="result-big" id="t4-prob" style="margin:8px 0;">—</div>
+            <div class="meter" style="width:100%;"><i id="t4-meter" style="width:0;"></i></div>
+            <div class="note" id="t4-band" style="margin-top:10px;">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">Artifacts: <code>at_risk_customers.csv</code>, <code>logit_model.json</code>, <code>metrics.json</code></div>
+    </section>
+
+    <!-- ========== SUBMISSION ========== -->
+    <section class="page" id="page-submission">
+      <h2 class="title">Submission Package</h2>
+      <p class="sub">What the brief requires for final submission, and where each item stands.</p>
+
+      <div class="callout ok"><b>Brief requirement:</b> after completing the selected projects, upload all source
+        code on GitHub, deploy/host the project online and submit the live link, and create a professional
+        LinkedIn post (with screenshots, tagging Sqrock IT Solutions).</div>
+
+      <h3 class="sec">Checklist</h3>
+      <div class="checklist" id="submissionList"></div>
+
+      <h3 class="sec">Repository structure produced</h3>
+      <div class="card">
+        <pre style="margin:0; font-size:12.5px; line-height:1.65; overflow-x:auto; color:var(--ink-2);">phase1_internship/
+├── data/                          # sourced datasets + provenance
+├── task1_sales_forecasting/       # sales_forecasting.py + artifacts/
+├── task2_student_performance/     # student_performance.py + artifacts/
+├── task3_resume_screening/        # resume_screening.py + artifacts/
+├── task4_churn_prediction/        # churn_prediction.py + artifacts/
+├── web/                           # this dashboard (index.html, styles.css, app.js, assets/)
+└── reports/                       # Phase 1 report, LinkedIn post, submission checklist</pre>
+      </div>
+
+      <h3 class="sec">Reproduce everything</h3>
+      <div class="card">
+        <div class="kv"><span>1. Install dependencies</span><code>pip install -r requirements.txt</code></div>
+        <div class="kv"><span>2. Download datasets</span><code>python download_data.py</code></div>
+        <div class="kv"><span>3. Run Task 1</span><code>python task1_sales_forecasting/sales_forecasting.py</code></div>
+        <div class="kv"><span>4. Run Task 2</span><code>python task2_student_performance/student_performance.py</code></div>
+        <div class="kv"><span>5. Run Task 3</span><code>python task3_resume_screening/resume_screening.py</code></div>
+        <div class="kv"><span>6. Run Task 4</span><code>python task4_churn_prediction/churn_prediction.py</code></div>
+      </div>
+
+      <div class="footer">Sqrock IT Solutions · Data Science Internship · Phase 1</div>
+    </section>
+
+  </main>
+</div>
+
+<script src="assets/chart.umd.min.js"></script>
+<script src="assets/data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

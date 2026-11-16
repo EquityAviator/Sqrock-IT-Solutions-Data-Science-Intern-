@@ -1,0 +1,1162 @@
+{
+  "task": "Stock Market Prediction System",
+  "dataset": "Yahoo Finance daily OHLCV, split/dividend adjusted",
+  "date_range": [
+    "2015-01-02",
+    "2026-11-13"
+  ],
+  "split": {
+    "train": "< 2023-01-01",
+    "validation": "2023-01-01 .. 2024-01-01",
+    "test": ">= 2024-01-01"
+  },
+  "target": "next-day log return, converted to a next-day closing price",
+  "features": [
+    "ret_1",
+    "ret_2",
+    "ret_3",
+    "ret_5",
+    "ret_10",
+    "ret_20",
+    "sma5_gap",
+    "sma10_gap",
+    "sma20_gap",
+    "sma50_gap",
+    "sma200_gap",
+    "ema12_gap",
+    "ema26_gap",
+    "macd",
+    "macd_signal",
+    "macd_hist",
+    "rsi_14",
+    "boll_pct_b",
+    "boll_width",
+    "vol_10",
+    "vol_20",
+    "range_pct",
+    "gap_pct",
+    "volume_ratio",
+    "volume_chg",
+    "mkt_ret_1",
+    "mkt_ret_5",
+    "mkt_vol_20",
+    "beta_60",
+    "dow"
+  ],
+  "device": {
+    "lstm": "NVIDIA GeForce GTX 1080",
+    "xgboost": "cuda",
+    "lstm_train_seconds": 3.6,
+    "mixed_precision": true
+  },
+  "lstm": {
+    "sequence_length": 60,
+    "architecture": "2-layer LSTM(64) + stock embedding + MLP head",
+    "epochs_run": 9,
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 1.65114,
+        "val_loss": 1.49244
+      },
+      {
+        "epoch": 2,
+        "train_loss": 1.65127,
+        "val_loss": 1.49253
+      },
+      {
+        "epoch": 3,
+        "train_loss": 1.65047,
+        "val_loss": 1.49278
+      },
+      {
+        "epoch": 4,
+        "train_loss": 1.64988,
+        "val_loss": 1.49295
+      },
+      {
+        "epoch": 5,
+        "train_loss": 1.64934,
+        "val_loss": 1.49453
+      },
+      {
+        "epoch": 6,
+        "train_loss": 1.64738,
+        "val_loss": 1.49817
+      },
+      {
+        "epoch": 7,
+        "train_loss": 1.6434,
+        "val_loss": 1.49577
+      },
+      {
+        "epoch": 8,
+        "train_loss": 1.63379,
+        "val_loss": 1.49532
+      },
+      {
+        "epoch": 9,
+        "train_loss": 1.61932,
+        "val_loss": 1.49588
+      }
+    ]
+  },
+  "summary": {
+    "Naive (tomorrow = today)": {
+      "rmse_vs_naive": 1.0,
+      "mean_R2": 0.98816,
+      "mean_MAPE_pct": 1.479,
+      "mean_direction_acc_pct": null,
+      "stocks_beating_naive": 0
+    },
+    "Linear Regression": {
+      "rmse_vs_naive": 1.0177,
+      "mean_R2": 0.98768,
+      "mean_MAPE_pct": 1.508,
+      "mean_direction_acc_pct": 49.96,
+      "stocks_beating_naive": 1
+    },
+    "Decision Tree": {
+      "rmse_vs_naive": 1.0127,
+      "mean_R2": 0.98789,
+      "mean_MAPE_pct": 1.493,
+      "mean_direction_acc_pct": 51.64,
+      "stocks_beating_naive": 1
+    },
+    "Random Forest": {
+      "rmse_vs_naive": 1.0034,
+      "mean_R2": 0.98803,
+      "mean_MAPE_pct": 1.482,
+      "mean_direction_acc_pct": 51.05,
+      "stocks_beating_naive": 2
+    },
+    "XGBoost": {
+      "rmse_vs_naive": 1.0002,
+      "mean_R2": 0.98815,
+      "mean_MAPE_pct": 1.475,
+      "mean_direction_acc_pct": 52.51,
+      "stocks_beating_naive": 5
+    },
+    "LSTM": {
+      "rmse_vs_naive": 0.9996,
+      "mean_R2": 0.98816,
+      "mean_MAPE_pct": 1.473,
+      "mean_direction_acc_pct": 53.22,
+      "stocks_beating_naive": 4
+    }
+  },
+  "tickers": {
+    "AAPL": {
+      "name": "Apple",
+      "cleaning": {
+        "rows_raw": 2985,
+        "bad_dates": 0,
+        "duplicates": 0,
+        "missing_values": 0,
+        "invalid_prices": 0,
+        "rows_clean": 2985
+      },
+      "rows": {
+        "train": 1815,
+        "validation": 250,
+        "test": 720
+      },
+      "models": {
+        "Naive (tomorrow = today)": {
+          "MAE": 2.8027,
+          "MSE": 16.6149,
+          "RMSE": 4.0761,
+          "R2": 0.99253,
+          "MAPE_pct": 1.171,
+          "Direction_acc_pct": null
+        },
+        "Linear Regression": {
+          "MAE": 2.8736,
+          "MSE": 17.0333,
+          "RMSE": 4.1271,
+          "R2": 0.99234,
+          "MAPE_pct": 1.197,
+          "Direction_acc_pct": 49.44
+        },
+        "Decision Tree": {
+          "MAE": 2.8725,
+          "MSE": 17.4509,
+          "RMSE": 4.1774,
+          "R2": 0.99215,
+          "MAPE_pct": 1.197,
+          "Direction_acc_pct": 49.86
+        },
+        "Random Forest": {
+          "MAE": 2.8261,
+          "MSE": 16.7555,
+          "RMSE": 4.0933,
+          "R2": 0.99247,
+          "MAPE_pct": 1.181,
+          "Direction_acc_pct": 51.11
+        },
+        "XGBoost": {
+          "MAE": 2.7926,
+          "MSE": 16.5637,
+          "RMSE": 4.0698,
+          "R2": 0.99255,
+          "MAPE_pct": 1.166,
+          "Direction_acc_pct": 53.89
+        },
+        "LSTM": {
+          "MAE": 2.7907,
+          "MSE": 16.5721,
+          "RMSE": 4.0709,
+          "R2": 0.99255,
+          "MAPE_pct": 1.165,
+          "Direction_acc_pct": 53.89
+        }
+      },
+      "best_model": "LSTM",
+      "validation_rmse": {
+        "Linear Regression": 2.223,
+        "Decision Tree": 2.1763,
+        "Random Forest": 2.1615,
+        "XGBoost": 2.1336,
+        "LSTM": 2.1332
+      },
+      "backtest": {
+        "strategy_return_pct": 94.3,
+        "buy_and_hold_return_pct": 94.4,
+        "days_in_market_pct": 100.0,
+        "trades": 1
+      },
+      "last_close": 356.27,
+      "last_date": "2026-11-13",
+      "forecast": {
+        "model": "LSTM",
+        "next_day": 356.69,
+        "day_30": 369.15,
+        "expected_change_30d_pct": 3.62,
+        "signal": "BUY"
+      }
+    },
+    "MSFT": {
+      "name": "Microsoft",
+      "cleaning": {
+        "rows_raw": 2985,
+        "bad_dates": 0,
+        "duplicates": 0,
+        "missing_values": 0,
+        "invalid_prices": 0,
+        "rows_clean": 2985
+      },
+      "rows": {
+        "train": 1815,
+        "validation": 250,
+        "test": 720
+      },
+      "models": {
+        "Naive (tomorrow = today)": {
+          "MAE": 4.9763,
+          "MSE": 52.7803,
+          "RMSE": 7.265,
+          "R2": 0.97732,
+          "MAPE_pct": 1.149,
+          "Direction_acc_pct": null
+        },
+        "Linear Regression": {
+          "MAE": 5.2106,
+          "MSE": 56.6008,
+          "RMSE": 7.5233,
+          "R2": 0.97568,
+          "MAPE_pct": 1.203,
+          "Direction_acc_pct": 50.56
+        },
+        "Decision Tree": {
+          "MAE": 5.1461,
+          "MSE": 56.001,
+          "RMSE": 7.4834,
+          "R2": 0.97594,
+          "MAPE_pct": 1.188,
+          "Direction_acc_pct": 52.36
+        },
+        "Random Forest": {
+          "MAE": 5.0786,
+          "MSE": 54.5537,
+          "RMSE": 7.386,
+          "R2": 0.97656,
+          "MAPE_pct": 1.172,
+          "Direction_acc_pct": 51.94
+        },
+        "XGBoost": {
+          "MAE": 4.9758,
+          "MSE": 52.9984,
+          "RMSE": 7.28,
+          "R2": 0.97723,
+          "MAPE_pct": 1.147,
+          "Direction_acc_pct": 51.81
+        },
+        "LSTM": {
+          "MAE": 4.9729,
+          "MSE": 52.8939,
+          "RMSE": 7.2728,
+          "R2": 0.97728,
+          "MAPE_pct": 1.147,
+          "Direction_acc_pct": 52.5
+        }
+      },
+      "best_model": "XGBoost",
+      "validation_rmse": {
+        "Linear Regression": 4.7282,
+        "Decision Tree": 4.7058,
+        "Random Forest": 4.6588,
+        "XGBoost": 4.6444,
+        "LSTM": 4.6502
+      },
+      "backtest": {
+        "strategy_return_pct": 25.02,
+        "buy_and_hold_return_pct": 44.27,
+        "days_in_market_pct": 98.2,
+        "trades": 19
+      },
+      "last_close": 523.88,
+      "last_date": "2026-11-13",
+      "forecast": {
+        "model": "XGBoost",
+        "next_day": 524.36,
+        "day_30": 538.45,
+        "expected_change_30d_pct": 2.78,
+        "signal": "BUY"
+      }
+    },
+    "GOOGL": {
+      "name": "Alphabet",
+      "cleaning": {
+        "rows_raw": 2985,
+        "bad_dates": 0,
+        "duplicates": 0,
+        "missing_values": 0,
+        "invalid_prices": 0,
+        "rows_clean": 2985
+      },
+      "rows": {
+        "train": 1815,
+        "validation": 250,
+        "test": 720
+      },
+      "models": {
+        "Naive (tomorrow = today)": {
+          "MAE": 3.3002,
+          "MSE": 24.9079,
+          "RMSE": 4.9908,
+          "R2": 0.99614,
+          "MAPE_pct": 1.413,
+          "Direction_acc_pct": null
+        },
+        "Linear Regression": {
+          "MAE": 3.3568,
+          "MSE": 25.7465,
+          "RMSE": 5.0741,
+          "R2": 0.99601,
+          "MAPE_pct": 1.437,
+          "Direction_acc_pct": 50.97
+        },
+        "Decision Tree": {
+          "MAE": 3.3527,
+          "MSE": 25.6257,
+          "RMSE": 5.0622,
+          "R2": 0.99603,
+          "MAPE_pct": 1.429,
+          "Direction_acc_pct": 55.0
+        },
+        "Random Forest": {
+          "MAE": 3.3135,
+          "MSE": 25.0356,
+          "RMSE": 5.0036,
+          "R2": 0.99612,
+          "MAPE_pct": 1.413,
+          "Direction_acc_pct": 52.5
+        },
+        "XGBoost": {
+          "MAE": 3.2934,
+          "MSE": 24.8883,
+          "RMSE": 4.9888,
+          "R2": 0.99615,
+          "MAPE_pct": 1.407,
+          "Direction_acc_pct": 54.72
+        },
+        "LSTM": {
+          "MAE": 3.2926,
+          "MSE": 24.9152,
+          "RMSE": 4.9915,
+          "R2": 0.99614,
+          "MAPE_pct": 1.404,
+          "Direction_acc_pct": 54.31
+        }
+      },
+      "best_model": "LSTM",
+      "validation_rmse": {
+        "Linear Regression": 2.2276,
+        "Decision Tree": 2.2457,
+        "Random Forest": 2.2157,
+        "XGBoost": 2.2018,
+        "LSTM": 2.2011
+      },
+      "backtest": {
+        "strategy_return_pct": 115.99,
+        "buy_and_hold_return_pct": 116.1,
+        "days_in_market_pct": 100.0,
+        "trades": 1
+      },
+      "last_close": 295.77,
+      "last_date": "2026-11-13",
+      "forecast": {
+        "model": "LSTM",
+        "next_day": 296.1,
+        "day_30": 305.86,
+        "expected_change_30d_pct": 3.41,
+        "signal": "BUY"
+      }
+    },
+    "AMZN": {
+      "name": "Amazon",
+      "cleaning": {
+        "rows_raw": 2985,
+        "bad_dates": 0,
+        "duplicates": 0,
+        "missing_values": 0,
+        "invalid_prices": 0,
+        "rows_clean": 2985
+      },
+      "rows": {
+        "train": 1815,
+        "validation": 250,
+        "test": 720
+      },
+      "models": {
+        "Naive (tomorrow = today)": {
+          "MAE": 3.1386,
+          "MSE": 19.4728,
+          "RMSE": 4.4128,
+          "R2": 0.97866,
+          "MAPE_pct": 1.468,
+          "Direction_acc_pct": null
+        },
+        "Linear Regression": {
+          "MAE": 3.1417,
+          "MSE": 19.8184,
+          "RMSE": 4.4518,
+          "R2": 0.97829,
+          "MAPE_pct": 1.469,
+          "Direction_acc_pct": 52.08
+        },
+        "Decision Tree": {
+          "MAE": 3.1408,
+          "MSE": 19.73,
+          "RMSE": 4.4419,
+          "R2": 0.97838,
+          "MAPE_pct": 1.467,
+          "Direction_acc_pct": 53.47
+        },
+        "Random Forest": {
+          "MAE": 3.1485,
+          "MSE": 19.6715,
+          "RMSE": 4.4353,
+          "R2": 0.97845,
+          "MAPE_pct": 1.471,
+          "Direction_acc_pct": 48.19
+        },
+        "XGBoost": {
+          "MAE": 3.1397,
+          "MSE": 19.4871,
+          "RMSE": 4.4144,
+          "R2": 0.97865,
+          "MAPE_pct": 1.467,
+          "Direction_acc_pct": 51.11
+        },
+        "LSTM": {
+          "MAE": 3.1437,
+          "MSE": 19.4848,
+          "RMSE": 4.4142,
+          "R2": 0.97865,
+          "MAPE_pct": 1.467,
+          "Direction_acc_pct": 51.67
+        }
+      },
+      "best_model": "LSTM",
+      "validation_rmse": {
+        "Linear Regression": 2.4842,
+        "Decision Tree": 2.4736,
+        "Random Forest": 2.475,
+        "XGBoost": 2.4524,
+        "LSTM": 2.4494
+      },
+      "backtest": {
+        "strategy_return_pct": 77.77,
+        "buy_and_hold_return_pct": 77.86,
+        "days_in_market_pct": 100.0,
+        "trades": 1
+      },
+      "last_close": 266.66,
+      "last_date": "2026-11-13",
+      "forecast": {
+        "model": "LSTM",
+        "next_day": 266.96,
+        "day_30": 276.13,
+        "expected_change_30d_pct": 3.55,
+        "signal": "BUY"
+      }
+    },
+    "NVDA": {
+      "name": "NVIDIA",
+      "cleaning": {
+        "rows_raw": 2985,
+        "bad_dates": 0,
+        "duplicates": 0,
+        "missing_values": 0,
+        "invalid_prices": 0,
+        "rows_clean": 2985
+      },
+      "rows": {
+        "train": 1815,
+        "validation": 250,
+        "test": 720
+      },
+      "models": {
+        "Naive (tomorrow = today)": {
+          "MAE": 3.1938,
+          "MSE": 18.2962,
+          "RMSE": 4.2774,
+          "R2": 0.9913,
+          "MAPE_pct": 2.21,
+          "Direction_acc_pct": null
+        },
+        "Linear Regression": {
+          "MAE": 3.1952,
+          "MSE": 18.3919,
+          "RMSE": 4.2886,
+          "R2": 0.99125,
+          "MAPE_pct": 2.201,
+          "Direction_acc_pct": 50.69
+        },
+        "Decision Tree": {
+          "MAE": 3.1931,
+          "MSE": 18.6307,
+          "RMSE": 4.3163,
+          "R2": 0.99114,
+          "MAPE_pct": 2.206,
+          "Direction_acc_pct": 52.78
+        },
+        "Random Forest": {
+          "MAE": 3.1812,
+          "MSE": 18.1269,
+          "RMSE": 4.2576,
+          "R2": 0.99138,
+          "MAPE_pct": 2.196,
+          "Direction_acc_pct": 52.08
+        },
+        "XGBoost": {
+          "MAE": 3.1901,
+          "MSE": 18.3436,
+          "RMSE": 4.2829,
+          "R2": 0.99128,
+          "MAPE_pct": 2.198,
+          "Direction_acc_pct": 53.19
+        },
+        "LSTM": {
+          "MAE": 3.1904,
+          "MSE": 18.3104,
+          "RMSE": 4.2791,
+          "R2": 0.99129,
+          "MAPE_pct": 2.201,
+          "Direction_acc_pct": 53.19
+        }
+      },
+      "best_model": "XGBoost",
+      "validation_rmse": {
+        "Linear Regression": 1.0444,
+        "Decision Tree": 1.0433,
+        "Random Forest": 1.0249,
+        "XGBoost": 1.0192,
+        "LSTM": 1.0199
+      },
+      "backtest": {
+        "strategy_return_pct": 238.9,
+        "buy_and_hold_return_pct": 239.07,
+        "days_in_market_pct": 100.0,
+        "trades": 1
+      },
+      "last_close": 162.85,
+      "last_date": "2026-11-13",
+      "forecast": {
+        "model": "XGBoost",
+        "next_day": 163.09,
+        "day_30": 170.78,
+        "expected_change_30d_pct": 4.87,
+        "signal": "BUY"
+      }
+    },
+    "TSLA": {
+      "name": "Tesla",
+      "cleaning": {
+        "rows_raw": 2985,
+        "bad_dates": 0,
+        "duplicates": 0,
+        "missing_values": 0,
+        "invalid_prices": 0,
+        "rows_clean": 2985
+      },
+      "rows": {
+        "train": 1815,
+        "validation": 250,
+        "test": 720
+      },
+      "models": {
+        "Naive (tomorrow = today)": {
+          "MAE": 8.4193,
+          "MSE": 131.4461,
+          "RMSE": 11.465,
+          "R2": 0.9844,
+          "MAPE_pct": 2.682,
+          "Direction_acc_pct": null
+        },
+        "Linear Regression": {
+          "MAE": 8.5144,
+          "MSE": 135.4696,
+          "RMSE": 11.6391,
+          "R2": 0.98392,
+          "MAPE_pct": 2.716,
+          "Direction_acc_pct": 49.58
+        },
+        "Decision Tree": {
+          "MAE": 8.3806,
+          "MSE": 129.9234,
+          "RMSE": 11.3984,
+          "R2": 0.98458,
+          "MAPE_pct": 2.67,
+          "Direction_acc_pct": 50.97
+        },
+        "Random Forest": {
+          "MAE": 8.4028,
+          "MSE": 131.5199,
+          "RMSE": 11.4682,
+          "R2": 0.98439,
+          "MAPE_pct": 2.673,
+          "Direction_acc_pct": 50.69
+        },
+        "XGBoost": {
+          "MAE": 8.4197,
+          "MSE": 131.5272,
+          "RMSE": 11.4685,
+          "R2": 0.98439,
+          "MAPE_pct": 2.677,
+          "Direction_acc_pct": 48.75
+        },
+        "LSTM": {
+          "MAE": 8.4263,
+          "MSE": 131.6055,
+          "RMSE": 11.4719,
+          "R2": 0.98438,
+          "MAPE_pct": 2.68,
+          "Direction_acc_pct": 50.28
+        }
+      },
+      "best_model": "Random Forest",
+      "validation_rmse": {
+        "Linear Regression": 7.1541,
+        "Decision Tree": 7.0875,
+        "Random Forest": 7.0263,
+        "XGBoost": 7.0346,
+        "LSTM": 7.0465
+      },
+      "backtest": {
+        "strategy_return_pct": 30.58,
+        "buy_and_hold_return_pct": 57.08,
+        "days_in_market_pct": 42.6,
+        "trades": 218
+      },
+      "last_close": 390.22,
+      "last_date": "2026-11-13",
+      "forecast": {
+        "model": "Random Forest",
+        "next_day": 389.85,
+        "day_30": 375.05,
+        "expected_change_30d_pct": -3.89,
+        "signal": "SELL"
+      }
+    },
+    "META": {
+      "name": "Meta Platforms",
+      "cleaning": {
+        "rows_raw": 2985,
+        "bad_dates": 0,
+        "duplicates": 0,
+        "missing_values": 0,
+        "invalid_prices": 0,
+        "rows_clean": 2985
+      },
+      "rows": {
+        "train": 1815,
+        "validation": 250,
+        "test": 720
+      },
+      "models": {
+        "Naive (tomorrow = today)": {
+          "MAE": 9.8605,
+          "MSE": 211.4244,
+          "RMSE": 14.5404,
+          "R2": 0.97552,
+          "MAPE_pct": 1.659,
+          "Direction_acc_pct": null
+        },
+        "Linear Regression": {
+          "MAE": 10.3423,
+          "MSE": 225.0532,
+          "RMSE": 15.0018,
+          "R2": 0.97395,
+          "MAPE_pct": 1.738,
+          "Direction_acc_pct": 49.17
+        },
+        "Decision Tree": {
+          "MAE": 9.9211,
+          "MSE": 212.7752,
+          "RMSE": 14.5868,
+          "R2": 0.97537,
+          "MAPE_pct": 1.669,
+          "Direction_acc_pct": 49.31
+        },
+        "Random Forest": {
+          "MAE": 9.9683,
+          "MSE": 214.3711,
+          "RMSE": 14.6414,
+          "R2": 0.97518,
+          "MAPE_pct": 1.677,
+          "Direction_acc_pct": 46.67
+        },
+        "XGBoost": {
+          "MAE": 9.8586,
+          "MSE": 211.3358,
+          "RMSE": 14.5374,
+          "R2": 0.97554,
+          "MAPE_pct": 1.658,
+          "Direction_acc_pct": 50.97
+        },
+        "LSTM": {
+          "MAE": 9.8656,
+          "MSE": 211.769,
+          "RMSE": 14.5523,
+          "R2": 0.97548,
+          "MAPE_pct": 1.656,
+          "Direction_acc_pct": 51.94
+        }
+      },
+      "best_model": "LSTM",
+      "validation_rmse": {
+        "Linear Regression": 5.8218,
+        "Decision Tree": 5.6711,
+        "Random Forest": 5.7589,
+        "XGBoost": 5.5967,
+        "LSTM": 5.5672
+      },
+      "backtest": {
+        "strategy_return_pct": 86.99,
+        "buy_and_hold_return_pct": 87.08,
+        "days_in_market_pct": 100.0,
+        "trades": 1
+      },
+      "last_close": 641.69,
+      "last_date": "2026-11-13",
+      "forecast": {
+        "model": "LSTM",
+        "next_day": 642.47,
+        "day_30": 665.2,
+        "expected_change_30d_pct": 3.66,
+        "signal": "BUY"
+      }
+    },
+    "JPM": {
+      "name": "JPMorgan Chase",
+      "cleaning": {
+        "rows_raw": 2985,
+        "bad_dates": 0,
+        "duplicates": 0,
+        "missing_values": 0,
+        "invalid_prices": 0,
+        "rows_clean": 2985
+      },
+      "rows": {
+        "train": 1815,
+        "validation": 250,
+        "test": 720
+      },
+      "models": {
+        "Naive (tomorrow = today)": {
+          "MAE": 2.7159,
+          "MSE": 15.0449,
+          "RMSE": 3.8788,
+          "R2": 0.99537,
+          "MAPE_pct": 1.043,
+          "Direction_acc_pct": null
+        },
+        "Linear Regression": {
+          "MAE": 2.813,
+          "MSE": 15.8264,
+          "RMSE": 3.9782,
+          "R2": 0.99513,
+          "MAPE_pct": 1.077,
+          "Direction_acc_pct": 48.06
+        },
+        "Decision Tree": {
+          "MAE": 2.7622,
+          "MSE": 15.6387,
+          "RMSE": 3.9546,
+          "R2": 0.99518,
+          "MAPE_pct": 1.063,
+          "Direction_acc_pct": 55.42
+        },
+        "Random Forest": {
+          "MAE": 2.719,
+          "MSE": 15.1077,
+          "RMSE": 3.8869,
+          "R2": 0.99535,
+          "MAPE_pct": 1.043,
+          "Direction_acc_pct": 53.61
+        },
+        "XGBoost": {
+          "MAE": 2.7161,
+          "MSE": 15.152,
+          "RMSE": 3.8926,
+          "R2": 0.99533,
+          "MAPE_pct": 1.042,
+          "Direction_acc_pct": 54.86
+        },
+        "LSTM": {
+          "MAE": 2.6923,
+          "MSE": 15.0066,
+          "RMSE": 3.8738,
+          "R2": 0.99538,
+          "MAPE_pct": 1.032,
+          "Direction_acc_pct": 56.53
+        }
+      },
+      "best_model": "Linear Regression",
+      "validation_rmse": {
+        "Linear Regression": 1.6721,
+        "Decision Tree": 1.6922,
+        "Random Forest": 1.6839,
+        "XGBoost": 1.6759,
+        "LSTM": 1.6783
+      },
+      "backtest": {
+        "strategy_return_pct": 12.29,
+        "buy_and_hold_return_pct": 114.4,
+        "days_in_market_pct": 61.1,
+        "trades": 270
+      },
+      "last_close": 346.19,
+      "last_date": "2026-11-13",
+      "forecast": {
+        "model": "Linear Regression",
+        "next_day": 345.82,
+        "day_30": 359.72,
+        "expected_change_30d_pct": 3.91,
+        "signal": "SELL"
+      }
+    },
+    "JNJ": {
+      "name": "Johnson & Johnson",
+      "cleaning": {
+        "rows_raw": 2985,
+        "bad_dates": 0,
+        "duplicates": 0,
+        "missing_values": 0,
+        "invalid_prices": 0,
+        "rows_clean": 2985
+      },
+      "rows": {
+        "train": 1815,
+        "validation": 250,
+        "test": 720
+      },
+      "models": {
+        "Naive (tomorrow = today)": {
+          "MAE": 1.6286,
+          "MSE": 5.5728,
+          "RMSE": 2.3607,
+          "R2": 0.99725,
+          "MAPE_pct": 0.862,
+          "Direction_acc_pct": null
+        },
+        "Linear Regression": {
+          "MAE": 1.6995,
+          "MSE": 5.8891,
+          "RMSE": 2.4268,
+          "R2": 0.99709,
+          "MAPE_pct": 0.9,
+          "Direction_acc_pct": 50.14
+        },
+        "Decision Tree": {
+          "MAE": 1.6668,
+          "MSE": 5.753,
+          "RMSE": 2.3985,
+          "R2": 0.99716,
+          "MAPE_pct": 0.887,
+          "Direction_acc_pct": 51.25
+        },
+        "Random Forest": {
+          "MAE": 1.6316,
+          "MSE": 5.5643,
+          "RMSE": 2.3589,
+          "R2": 0.99725,
+          "MAPE_pct": 0.864,
+          "Direction_acc_pct": 53.06
+        },
+        "XGBoost": {
+          "MAE": 1.624,
+          "MSE": 5.5462,
+          "RMSE": 2.355,
+          "R2": 0.99726,
+          "MAPE_pct": 0.859,
+          "Direction_acc_pct": 54.03
+        },
+        "LSTM": {
+          "MAE": 1.6235,
+          "MSE": 5.5316,
+          "RMSE": 2.3519,
+          "R2": 0.99727,
+          "MAPE_pct": 0.858,
+          "Direction_acc_pct": 54.03
+        }
+      },
+      "best_model": "XGBoost",
+      "validation_rmse": {
+        "Linear Regression": 1.6244,
+        "Decision Tree": 1.5841,
+        "Random Forest": 1.5788,
+        "XGBoost": 1.5449,
+        "LSTM": 1.5562
+      },
+      "backtest": {
+        "strategy_return_pct": 92.88,
+        "buy_and_hold_return_pct": 92.98,
+        "days_in_market_pct": 100.0,
+        "trades": 1
+      },
+      "last_close": 285.75,
+      "last_date": "2026-11-13",
+      "forecast": {
+        "model": "XGBoost",
+        "next_day": 285.88,
+        "day_30": 289.54,
+        "expected_change_30d_pct": 1.33,
+        "signal": "BUY"
+      }
+    },
+    "XOM": {
+      "name": "Exxon Mobil",
+      "cleaning": {
+        "rows_raw": 2985,
+        "bad_dates": 0,
+        "duplicates": 0,
+        "missing_values": 0,
+        "invalid_prices": 0,
+        "rows_clean": 2985
+      },
+      "rows": {
+        "train": 1815,
+        "validation": 250,
+        "test": 720
+      },
+      "models": {
+        "Naive (tomorrow = today)": {
+          "MAE": 1.3923,
+          "MSE": 3.6893,
+          "RMSE": 1.9208,
+          "R2": 0.99313,
+          "MAPE_pct": 1.13,
+          "Direction_acc_pct": null
+        },
+        "Linear Regression": {
+          "MAE": 1.406,
+          "MSE": 3.6888,
+          "RMSE": 1.9206,
+          "R2": 0.99313,
+          "MAPE_pct": 1.144,
+          "Direction_acc_pct": 48.89
+        },
+        "Decision Tree": {
+          "MAE": 1.4153,
+          "MSE": 3.7591,
+          "RMSE": 1.9388,
+          "R2": 0.993,
+          "MAPE_pct": 1.149,
+          "Direction_acc_pct": 45.97
+        },
+        "Random Forest": {
+          "MAE": 1.3964,
+          "MSE": 3.6974,
+          "RMSE": 1.9229,
+          "R2": 0.99312,
+          "MAPE_pct": 1.132,
+          "Direction_acc_pct": 50.69
+        },
+        "XGBoost": {
+          "MAE": 1.3934,
+          "MSE": 3.6845,
+          "RMSE": 1.9195,
+          "R2": 0.99314,
+          "MAPE_pct": 1.13,
+          "Direction_acc_pct": 51.81
+        },
+        "LSTM": {
+          "MAE": 1.3866,
+          "MSE": 3.6813,
+          "RMSE": 1.9187,
+          "R2": 0.99315,
+          "MAPE_pct": 1.124,
+          "Direction_acc_pct": 53.89
+        }
+      },
+      "best_model": "Random Forest",
+      "validation_rmse": {
+        "Linear Regression": 1.5684,
+        "Decision Tree": 1.5589,
+        "Random Forest": 1.535,
+        "XGBoost": 1.5371,
+        "LSTM": 1.5421
+      },
+      "backtest": {
+        "strategy_return_pct": 31.42,
+        "buy_and_hold_return_pct": 82.25,
+        "days_in_market_pct": 62.8,
+        "trades": 292
+      },
+      "last_close": 170.59,
+      "last_date": "2026-11-13",
+      "forecast": {
+        "model": "Random Forest",
+        "next_day": 170.59,
+        "day_30": 168.61,
+        "expected_change_30d_pct": -1.16,
+        "signal": "BUY"
+      }
+    }
+  },
+  "correlation": {
+    "AAPL": {
+      "AAPL": 1.0,
+      "MSFT": 0.618,
+      "GOOGL": 0.552,
+      "AMZN": 0.522,
+      "NVDA": 0.505,
+      "TSLA": 0.419,
+      "META": 0.489,
+      "JPM": 0.415,
+      "JNJ": 0.302,
+      "XOM": 0.283
+    },
+    "MSFT": {
+      "AAPL": 0.618,
+      "MSFT": 1.0,
+      "GOOGL": 0.634,
+      "AMZN": 0.631,
+      "NVDA": 0.575,
+      "TSLA": 0.393,
+      "META": 0.543,
+      "JPM": 0.418,
+      "JNJ": 0.28,
+      "XOM": 0.236
+    },
+    "GOOGL": {
+      "AAPL": 0.552,
+      "MSFT": 0.634,
+      "GOOGL": 1.0,
+      "AMZN": 0.634,
+      "NVDA": 0.504,
+      "TSLA": 0.382,
+      "META": 0.575,
+      "JPM": 0.388,
+      "JNJ": 0.242,
+      "XOM": 0.224
+    },
+    "AMZN": {
+      "AAPL": 0.522,
+      "MSFT": 0.631,
+      "GOOGL": 0.634,
+      "AMZN": 1.0,
+      "NVDA": 0.501,
+      "TSLA": 0.4,
+      "META": 0.581,
+      "JPM": 0.309,
+      "JNJ": 0.159,
+      "XOM": 0.147
+    },
+    "NVDA": {
+      "AAPL": 0.505,
+      "MSFT": 0.575,
+      "GOOGL": 0.504,
+      "AMZN": 0.501,
+      "NVDA": 1.0,
+      "TSLA": 0.42,
+      "META": 0.47,
+      "JPM": 0.336,
+      "JNJ": 0.103,
+      "XOM": 0.179
+    },
+    "TSLA": {
+      "AAPL": 0.419,
+      "MSFT": 0.393,
+      "GOOGL": 0.382,
+      "AMZN": 0.4,
+      "NVDA": 0.42,
+      "TSLA": 1.0,
+      "META": 0.338,
+      "JPM": 0.283,
+      "JNJ": 0.078,
+      "XOM": 0.152
+    },
+    "META": {
+      "AAPL": 0.489,
+      "MSFT": 0.543,
+      "GOOGL": 0.575,
+      "AMZN": 0.581,
+      "NVDA": 0.47,
+      "TSLA": 0.338,
+      "META": 1.0,
+      "JPM": 0.32,
+      "JNJ": 0.145,
+      "XOM": 0.152
+    },
+    "JPM": {
+      "AAPL": 0.415,
+      "MSFT": 0.418,
+      "GOOGL": 0.388,
+      "AMZN": 0.309,
+      "NVDA": 0.336,
+      "TSLA": 0.283,
+      "META": 0.32,
+      "JPM": 1.0,
+      "JNJ": 0.351,
+      "XOM": 0.501
+    },
+    "JNJ": {
+      "AAPL": 0.302,
+      "MSFT": 0.28,
+      "GOOGL": 0.242,
+      "AMZN": 0.159,
+      "NVDA": 0.103,
+      "TSLA": 0.078,
+      "META": 0.145,
+      "JPM": 0.351,
+      "JNJ": 1.0,
+      "XOM": 0.289
+    },
+    "XOM": {
+      "AAPL": 0.283,
+      "MSFT": 0.236,
+      "GOOGL": 0.224,
+      "AMZN": 0.147,
+      "NVDA": 0.179,
+      "TSLA": 0.152,
+      "META": 0.152,
+      "JPM": 0.501,
+      "JNJ": 0.289,
+      "XOM": 1.0
+    }
+  }
+}

@@ -1,0 +1,27 @@
+# other projects kept in this folder locally, not part of the internship
+ml_engineering_tasks/
+voltworks_website/
+
+# the company's internship brief is not mine to publish
+*Brief*.pdf
+_Data_Science.pdf
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# local-only files
+logs/
+users.json
+*.log
+.env
+.streamlit/secrets.toml
+
+# os / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

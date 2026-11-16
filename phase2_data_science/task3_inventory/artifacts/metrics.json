@@ -1,0 +1,203 @@
+{
+  "task": "Smart Inventory Management System",
+  "dataset": "Montgomery County (MD) Alcohol Beverage Services open data",
+  "history_months": [
+    "2017-06",
+    "2017-07",
+    "2017-08",
+    "2017-09",
+    "2017-10",
+    "2017-11",
+    "2017-12",
+    "2018-01",
+    "2018-02",
+    "2019-01",
+    "2019-02",
+    "2019-03",
+    "2019-04",
+    "2019-05",
+    "2019-06",
+    "2019-07",
+    "2019-08",
+    "2019-09",
+    "2019-10",
+    "2019-11",
+    "2020-01",
+    "2020-03",
+    "2020-07",
+    "2020-09",
+    "2026-06",
+    "2026-07",
+    "2026-08",
+    "2026-09"
+  ],
+  "forecast_month": "2026-10",
+  "cleaning": {
+    "rows_raw": {
+      "inventory": 7020,
+      "sales": 352419,
+      "purchases": 8649
+    },
+    "inventory_duplicate_codes": 0,
+    "inventory_invalid_rows_removed": 0,
+    "sales_missing_supplier": 217,
+    "sales_missing_values": 7,
+    "sales_duplicates_removed": 0,
+    "sales_negative_adjustments": 885,
+    "sales_non_merchandise_rows_removed": 737,
+    "rows_clean": {
+      "inventory": 7020,
+      "sales": 351682,
+      "purchases": 8649
+    }
+  },
+  "kpi": {
+    "total_products": 7020,
+    "active_products": 6461,
+    "total_categories": 102,
+    "total_suppliers": 305,
+    "available_stock_units": 4678453,
+    "inventory_value_retail": 35564838.41,
+    "inventory_value_cost_est": 25600501.32,
+    "out_of_stock": 1962,
+    "critical": 278,
+    "low_stock": 475,
+    "overstock": 257,
+    "healthy": 1757,
+    "inactive": 2291,
+    "reorder_lines": 2715,
+    "reorder_cases": 155509,
+    "reorder_cost_est": 9562744.27,
+    "lost_sales_risk_month": 2545898.87,
+    "overstock_value_retail": 5049666.06
+  },
+  "forecast": {
+    "features": [
+      "lag_1",
+      "lag_2",
+      "lag_3",
+      "age_1",
+      "age_2",
+      "age_3",
+      "recent_mean",
+      "recent_n",
+      "trend",
+      "mean_6",
+      "std_6",
+      "hist_mean",
+      "months_listed",
+      "same_month_prev",
+      "same_month_age",
+      "month_of_year",
+      "dept",
+      "category",
+      "log_price"
+    ],
+    "test_months": [
+      "2026-08",
+      "2026-09"
+    ],
+    "train_rows": 73329,
+    "test_rows": 13095,
+    "models": {
+      "Naive (last month)": {
+        "MAE_cases": 8.044,
+        "RMSE_cases": 53.765,
+        "WAPE_pct": 22.21,
+        "Bias_pct": 2.99
+      },
+      "Moving Average (recent months)": {
+        "MAE_cases": 7.62,
+        "RMSE_cases": 52.361,
+        "WAPE_pct": 21.04,
+        "Bias_pct": 10.32
+      },
+      "Linear Regression": {
+        "MAE_cases": 10.694,
+        "RMSE_cases": 75.87,
+        "WAPE_pct": 29.52,
+        "Bias_pct": 5.49
+      },
+      "Random Forest": {
+        "MAE_cases": 7.681,
+        "RMSE_cases": 66.484,
+        "WAPE_pct": 21.21,
+        "Bias_pct": 3.02
+      },
+      "XGBoost": {
+        "MAE_cases": 8.223,
+        "RMSE_cases": 63.517,
+        "WAPE_pct": 22.7,
+        "Bias_pct": 6.43
+      }
+    },
+    "best_model": "Moving Average (recent months)",
+    "xgboost_device": "cuda",
+    "feature_importance": {
+      "trend": 0.12939999997615814,
+      "same_month_age": 0.0925000011920929,
+      "months_listed": 0.08479999750852585,
+      "mean_6": 0.06920000165700912,
+      "lag_2": 0.06360000371932983,
+      "month_of_year": 0.06350000202655792,
+      "recent_n": 0.06239999830722809,
+      "lag_1": 0.05829999968409538,
+      "hist_mean": 0.04479999840259552,
+      "age_2": 0.04439999908208847,
+      "age_1": 0.04309999942779541,
+      "age_3": 0.035999998450279236,
+      "lag_3": 0.03530000150203705,
+      "dept": 0.03519999980926514,
+      "std_6": 0.035100001841783524,
+      "same_month_prev": 0.03189999982714653,
+      "recent_mean": 0.030899999663233757,
+      "log_price": 0.022700000554323196,
+      "category": 0.016899999231100082
+    }
+  },
+  "assumptions": {
+    "gross_margin_for_cost_estimate": 0.28,
+    "target_cover_months": 1.5,
+    "low_cover_months": 1.0,
+    "critical_cover_months": 0.5,
+    "overstock_cover_months": 6.0,
+    "units_per_case_by_size": {
+      "750ML": 12,
+      "1.75L": 6,
+      "1L": 12,
+      "1.5L": 6,
+      "375ML": 24,
+      "200ML": 48,
+      "100ML": 60,
+      "50ML": 120,
+      "700ML": 12,
+      "500ML": 12,
+      "187ML": 24,
+      "3L": 4,
+      "5L": 4,
+      "4L": 4,
+      "720ML": 12,
+      "1LTR": 12,
+      "5LTR": 4,
+      "3LTR": 4,
+      "355ML": 24,
+      "250ML": 24,
+      "300ML": 12,
+      "12.0Z": 24
+    }
+  },
+  "abc": {
+    "A": {
+      "products": 1361,
+      "revenue_share_pct": 80.0
+    },
+    "B": {
+      "products": 1770,
+      "revenue_share_pct": 15.0
+    },
+    "C": {
+      "products": 3330,
+      "revenue_share_pct": 5.0
+    }
+  }
+}

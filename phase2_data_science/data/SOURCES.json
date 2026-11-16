@@ -1,0 +1,100 @@
+{
+  "task3_store_inventory": {
+    "source": "Montgomery County (Maryland, USA) Alcohol Beverage Services - open data portal",
+    "url": "https://data.montgomerycountymd.gov/d/ib5t-5ncy",
+    "what": "ABS Store Inventory and Sale Items (current stock on hand + shelf price, updated daily)",
+    "rows": 7020,
+    "downloaded_utc": "2026-11-15 22:42"
+  },
+  "task3_sales_history": {
+    "source": "Montgomery County (Maryland, USA) Alcohol Beverage Services - open data portal",
+    "url": "https://data.montgomerycountymd.gov/d/v76h-r7br",
+    "what": "Warehouse and Retail Sales (monthly cases sold per item and supplier)",
+    "rows": 352419,
+    "downloaded_utc": "2026-11-15 22:52"
+  },
+  "task3_purchases": {
+    "source": "Montgomery County (Maryland, USA) Alcohol Beverage Services - open data portal",
+    "url": "https://data.montgomerycountymd.gov/d/kpfd-c5d5",
+    "what": "Product Purchases (last month's purchase orders by vendor)",
+    "rows": 8649,
+    "downloaded_utc": "2026-11-15 22:52"
+  },
+  "task2_sample_bank_marketing": {
+    "source": "UCI Machine Learning Repository - Bank Marketing (Moro, Cortez & Rita, 2014)",
+    "url": "https://archive.ics.uci.edu/dataset/222/bank+marketing",
+    "what": "Real phone-campaign records of a Portuguese bank, 2008-2010",
+    "rows": 41188,
+    "downloaded_utc": "2026-11-15 22:54"
+  },
+  "task4_loans": {
+    "source": "US Consumer Financial Protection Bureau - Home Mortgage Disclosure Act (HMDA) public data",
+    "url": "https://ffiec.cfpb.gov/data-browser/",
+    "api": "https://ffiec.cfpb.gov/v2/data-browser-api/view/csv?states=CO&years=2023&actions_taken=1,2,3",
+    "what": "Every mortgage application decided in CO in 2023 (originated, approved-not-accepted, denied)",
+    "rows": 183015,
+    "columns_kept": [
+      "action_taken",
+      "derived_sex",
+      "loan_type",
+      "loan_purpose",
+      "lien_status",
+      "occupancy_type",
+      "loan_amount",
+      "loan_term",
+      "property_value",
+      "income",
+      "debt_to_income_ratio",
+      "loan_to_value_ratio",
+      "applicant_age",
+      "co-applicant_age",
+      "derived_race",
+      "derived_ethnicity",
+      "derived_loan_product_type",
+      "derived_dwelling_category",
+      "county_code",
+      "tract_minority_population_percent",
+      "tract_to_msa_income_percentage",
+      "ffiec_msa_md_median_family_income",
+      "total_units",
+      "business_or_commercial_purpose",
+      "open-end_line_of_credit",
+      "preapproval",
+      "denial_reason-1"
+    ],
+    "downloaded_utc": "2026-11-15 23:03"
+  },
+  "task1_stocks": {
+    "source": "Yahoo Finance (via the yfinance library)",
+    "url": "https://finance.yahoo.com",
+    "what": "Daily OHLCV price history",
+    "tickers": {
+      "AAPL": "Apple",
+      "MSFT": "Microsoft",
+      "GOOGL": "Alphabet",
+      "AMZN": "Amazon",
+      "NVDA": "NVIDIA",
+      "TSLA": "Tesla",
+      "META": "Meta Platforms",
+      "JPM": "JPMorgan Chase",
+      "JNJ": "Johnson & Johnson",
+      "XOM": "Exxon Mobil",
+      "^GSPC": "S&P 500 Index"
+    },
+    "rows": {
+      "AAPL": 2985,
+      "MSFT": 2985,
+      "GOOGL": 2985,
+      "AMZN": 2985,
+      "NVDA": 2985,
+      "TSLA": 2985,
+      "META": 2985,
+      "JPM": 2985,
+      "JNJ": 2985,
+      "XOM": 2985,
+      "^GSPC": 2985
+    },
+    "start": "2015-01-01",
+    "downloaded_utc": "2026-11-16 08:34"
+  }
+}

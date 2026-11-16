@@ -1,0 +1,75 @@
+{
+  "task": "Customer Churn Prediction System",
+  "dataset": "IBM Telco Customer Churn (7,043 customers, 21 columns)",
+  "customers": 7043,
+  "churn_rate_pct": 26.54,
+  "train": 5634,
+  "test": 1409,
+  "features": [
+    "gender",
+    "SeniorCitizen",
+    "Partner",
+    "Dependents",
+    "tenure",
+    "PhoneService",
+    "MultipleLines",
+    "InternetService",
+    "OnlineSecurity",
+    "OnlineBackup",
+    "DeviceProtection",
+    "TechSupport",
+    "StreamingTV",
+    "StreamingMovies",
+    "Contract",
+    "PaperlessBilling",
+    "PaymentMethod",
+    "MonthlyCharges",
+    "TotalCharges",
+    "avg_monthly_spend",
+    "contract_group",
+    "num_services"
+  ],
+  "engineered_features": [
+    "avg_monthly_spend",
+    "contract_group",
+    "tenure_bucket",
+    "num_services"
+  ],
+  "models": {
+    "Logistic Regression": {
+      "Accuracy": 0.7388,
+      "Precision": 0.5051,
+      "Recall": 0.7914,
+      "F1": 0.6167,
+      "ROC_AUC": 0.8394
+    },
+    "Decision Tree": {
+      "Accuracy": 0.714,
+      "Precision": 0.4771,
+      "Recall": 0.8075,
+      "F1": 0.5998,
+      "ROC_AUC": 0.8173
+    },
+    "Random Forest": {
+      "Accuracy": 0.7637,
+      "Precision": 0.5411,
+      "Recall": 0.7219,
+      "F1": 0.6186,
+      "ROC_AUC": 0.8347
+    },
+    "KNN": {
+      "Accuracy": 0.7736,
+      "Precision": 0.5797,
+      "Recall": 0.5348,
+      "F1": 0.5563,
+      "ROC_AUC": 0.8091
+    }
+  },
+  "best_model": "Random Forest",
+  "confusion_matrix": {
+    "tn": 806,
+    "fp": 229,
+    "fn": 104,
+    "tp": 270
+  }
+}

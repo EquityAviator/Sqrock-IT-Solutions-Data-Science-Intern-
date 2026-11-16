@@ -1,0 +1,21 @@
+# datasets are large and fully re-fetchable via download_data.py
+data/*.csv
+data/*.zip
+data/student_uci/
+data/sample_resume_pdfs/
+nltk_data/
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# os / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# scratch
+_shots/

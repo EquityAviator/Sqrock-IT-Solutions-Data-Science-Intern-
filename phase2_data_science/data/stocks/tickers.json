@@ -1,0 +1,13 @@
+{
+  "AAPL": "Apple",
+  "MSFT": "Microsoft",
+  "GOOGL": "Alphabet",
+  "AMZN": "Amazon",
+  "NVDA": "NVIDIA",
+  "TSLA": "Tesla",
+  "META": "Meta Platforms",
+  "JPM": "JPMorgan Chase",
+  "JNJ": "Johnson & Johnson",
+  "XOM": "Exxon Mobil",
+  "^GSPC": "S&P 500 Index"
+}

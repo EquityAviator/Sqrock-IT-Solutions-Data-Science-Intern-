@@ -1,0 +1,53 @@
+{
+  "task": "Sales Forecasting System",
+  "dataset": "Store Sales (Favorita grocery) - Kaggle mirror on Hugging Face",
+  "records_raw": 3000888,
+  "daily_points": 1688,
+  "date_range": [
+    "2013-01-01",
+    "2017-08-15"
+  ],
+  "train_days": 1568,
+  "test_days": 90,
+  "features": [
+    "year",
+    "month",
+    "day",
+    "dayofweek",
+    "dayofyear",
+    "weekofyear",
+    "is_weekend",
+    "onpromotion",
+    "lag_1",
+    "lag_7",
+    "lag_14",
+    "lag_30",
+    "roll_7",
+    "roll_30"
+  ],
+  "models": {
+    "Linear Regression": {
+      "MAE": 62115.72,
+      "RMSE": 82427.69
+    },
+    "Decision Tree": {
+      "MAE": 71738.65,
+      "RMSE": 104803.82
+    },
+    "Random Forest": {
+      "MAE": 46799.08,
+      "RMSE": 64170.54
+    },
+    "ARIMA": {
+      "MAE": 119375.41,
+      "RMSE": 148932.6
+    }
+  },
+  "best_model": "Random Forest",
+  "highest_month": "2016-12",
+  "highest_month_sales": 30780091.88,
+  "lowest_month": "2013-02",
+  "lowest_month_sales": 9658959.78,
+  "forecast_next_30_days_total": 23539632.48,
+  "forecast_next_30_days_mean": 784654.42
+}

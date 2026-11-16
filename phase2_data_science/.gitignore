@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+data/loans/_raw.csv
+.DS_Store
+Thumbs.db
+logs/
+users.json

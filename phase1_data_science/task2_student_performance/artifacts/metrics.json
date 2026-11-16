@@ -1,0 +1,49 @@
+{
+  "task": "Student Performance Predictor",
+  "dataset": "UCI Student Performance (Cortez & Silva) - Math + Portuguese",
+  "students": 1044,
+  "train": 835,
+  "test": 209,
+  "features": [
+    "study_hours",
+    "attendance",
+    "previous_score",
+    "assignments_score",
+    "failures",
+    "age",
+    "Medu",
+    "Fedu",
+    "goout",
+    "Dalc",
+    "Walc",
+    "health",
+    "freetime",
+    "famrel",
+    "sex",
+    "internet",
+    "higher",
+    "romantic",
+    "subject"
+  ],
+  "models": {
+    "Linear Regression": {
+      "MAE": 0.969,
+      "MSE": 2.936,
+      "R2": 0.8101
+    },
+    "Decision Tree": {
+      "MAE": 0.991,
+      "MSE": 3.307,
+      "R2": 0.7861
+    },
+    "Random Forest": {
+      "MAE": 0.901,
+      "MSE": 2.609,
+      "R2": 0.8312
+    }
+  },
+  "best_model": "Random Forest",
+  "target": "final_marks (G3, 0-20 scale)",
+  "mean_final_marks": 11.34,
+  "corr_study_hours_marks": 0.158
+}

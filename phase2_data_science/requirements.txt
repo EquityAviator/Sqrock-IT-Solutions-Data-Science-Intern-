@@ -1,0 +1,24 @@
+# Dashboard + models (enough to run `streamlit run app.py` and all pipelines except the LSTM)
+pandas>=2.2
+numpy>=1.26
+scipy>=1.11
+scikit-learn>=1.5
+xgboost>=2.1
+statsmodels>=0.14
+matplotlib>=3.8
+seaborn>=0.13
+plotly>=5.22
+streamlit>=1.40
+yfinance>=0.2.50
+openpyxl>=3.1
+joblib>=1.4
+requests>=2.31
+
+# Task 1 LSTM (training needs it; the dashboard works without it).
+# GPU build:  pip install torch --index-url https://download.pytorch.org/whl/cu124
+# torch>=2.4
+vaderSentiment>=3.3
+qrcode[pil]>=7.4
+python-barcode>=0.15
+fpdf2>=2.7
+psutil>=5.9
